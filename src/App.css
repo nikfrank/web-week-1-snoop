@@ -101,6 +101,26 @@
   width: 50px;
 }
 
+.album-dropdown-base {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  padding: 30px 25px 10px 10px;
+}
+
+.album-dropdown-base img {
+  height: 45px;
+  width: 45px;
+}
+
+.album-dropdown-base .dropdown-arrow {
+  position: absolute;
+  right: 5px;
+  user-select: none;
+}
+
 .done-container {
   flex-basis: 100%;
   display: flex;
@@ -171,6 +191,18 @@
 
 .modal-closed {
   display: none;
+}
+
+.modal-shade {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+
+  z-index: 420;
+
+  background-color: #3338;
 }
 
 .fake-button {

@@ -3,6 +3,8 @@ import './App.css';
 import emailRegex from './emailRegex';
 import goldRecord from './goldRecord.png';
 
+import snoopAlbums from './snoopAlbums';
+
 const checkEmail = (email)=> emailRegex.test(email);
 
 
@@ -14,6 +16,8 @@ class App extends React.Component {
     email: '',
     isEmailValid: false,
     albumSales: 1000,
+    topAlbum: snoopAlbums[0],
+    albumMenuOpen: false,
   }
 
   setRapName = (event)=> {
@@ -37,7 +41,12 @@ class App extends React.Component {
 
   toggleModal = ()=>
     this.setState({
-      modalOpen: !this.state.modalOpen
+      modalOpen: !this.state.modalOpen,
+    })
+
+  toggleAlbumMenu = ()=>
+    this.setState({
+      albumMenuOpen: !this.state.albumMenuOpen,
     })
 
   done = (event)=> {
@@ -87,6 +96,29 @@ class App extends React.Component {
             </div>
           </div>
 
+          <div className='card swanky-input-container'>
+            <label>
+              <span className='title'>Top Album</span>
+              <div className='album-dropdown-base'>
+                {this.state.topAlbum === null ? (
+                  <span>Select the best Snoop Album</span>
+                ) : (
+                  <>
+                   <img src={this.state.topAlbum.cover}
+                        alt={this.state.topAlbum.name}/>
+                   <span>{this.state.topAlbum.year}</span>
+                   <span>{this.state.topAlbum.name}</span>
+                 </>
+                )}
+                <span className='dropdown-arrow'
+                      onClick={this.toggleAlbumMenu}>
+                      {this.state.albumMenuOpen ? '▲' : '▼'}
+                </span>
+              </div>
+            </label>
+          </div>
+
+
           <div className='done-container'>
             <button className='done-button' onClick={this.toggleModal}>Done</button>
           </div>
@@ -103,6 +135,9 @@ class App extends React.Component {
             <path d='M 70 30 L 30 70'/>
           </svg>
         </div>
+        {this.state.modalOpen ? (
+          <div className='modal-shade' onClick={this.toggleModal}/>
+        ) : null}
       </div>
     );
   }
