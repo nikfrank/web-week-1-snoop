@@ -49,6 +49,8 @@ class App extends React.Component {
       albumMenuOpen: !this.state.albumMenuOpen,
     })
 
+  selectAlbum = (album)=> this.setState({ topAlbum: album, albumMenuOpen: false })
+
   done = (event)=> {
     this.toggleModal();
     console.log('done applying, it\'s friday, now I got nothin to do');
@@ -97,25 +99,38 @@ class App extends React.Component {
           </div>
 
           <div className='card swanky-input-container'>
-            <label>
-              <span className='title'>Top Album</span>
-              <div className='album-dropdown-base'>
-                {this.state.topAlbum === null ? (
-                  <span>Select the best Snoop Album</span>
-                ) : (
-                  <>
-                   <img src={this.state.topAlbum.cover}
-                        alt={this.state.topAlbum.name}/>
-                   <span>{this.state.topAlbum.year}</span>
-                   <span>{this.state.topAlbum.name}</span>
-                 </>
-                )}
-                <span className='dropdown-arrow'
-                      onClick={this.toggleAlbumMenu}>
-                      {this.state.albumMenuOpen ? '▲' : '▼'}
-                </span>
-              </div>
-            </label>
+            <span className='title'>Top Album</span>
+            <div className='album-dropdown-base' onClick={this.toggleAlbumMenu}>
+              {this.state.topAlbum === null ? (
+                <span>Select the best Snoop Album</span>
+              ) : (
+                <>
+                 <img src={this.state.topAlbum.cover}
+                      alt={this.state.topAlbum.name}/>
+                 <span>{this.state.topAlbum.year}</span>
+                 <span>{this.state.topAlbum.name}</span>
+               </>
+              )}
+              <span className='dropdown-arrow'>
+                    {this.state.albumMenuOpen ? '▲' : '▼'}
+              </span>
+            </div>
+            {
+              this.state.albumMenuOpen ? (
+                <ul className='album-menu'>
+                  {
+                    snoopAlbums.map((album)=>(
+                      <li key={album.name}
+                          onClick={()=> this.selectAlbum(album)}>
+                        <img src={album.cover}/>
+                        <span>{album.year}</span>
+                        <span>{album.name}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              ) : null
+            }
           </div>
 
 

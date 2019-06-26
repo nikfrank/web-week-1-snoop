@@ -101,7 +101,7 @@
   width: 50px;
 }
 
-.album-dropdown-base {
+.album-dropdown-base, ul.album-menu li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,7 +110,7 @@
   padding: 30px 25px 10px 10px;
 }
 
-.album-dropdown-base img {
+.album-dropdown-base img, ul.album-menu img {
   height: 45px;
   width: 45px;
 }
@@ -119,6 +119,45 @@
   position: absolute;
   right: 5px;
   user-select: none;
+}
+
+ul.album-menu {
+  list-style: none;
+  padding: 0;
+
+  position: absolute;
+  top: 100%;
+
+  max-height: 25vh;
+  overflow-y: auto;
+
+  margin: 2px 0 0 0;
+
+  z-index: 30;
+
+  background-color: white;
+
+  box-shadow:
+    0px 1px 3px 0px rgba(0,0,0,0.2),
+    0px 1px 1px 0px rgba(0,0,0,0.14),
+    0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+
+ul.album-menu li:hover {
+  background-color: #eee;
+}
+
+ul.album-menu li span, .album-dropdown-base span:not(.dropdown-arrow) {
+  display: inline-block;
+  width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+ul.album-menu li span:nth-child(2), .album-dropdown-base span:nth-child(2) {
+  width: 38px;
+  padding: 0 3px 0 9px;
 }
 
 .done-container {
