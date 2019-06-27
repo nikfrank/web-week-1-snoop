@@ -5,6 +5,9 @@ import goldRecord from './goldRecord.png';
 
 import snoopAlbums from './snoopAlbums';
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 const checkEmail = (email)=> emailRegex.test(email);
 
 
@@ -16,8 +19,9 @@ class App extends React.Component {
     email: '',
     isEmailValid: false,
     albumSales: 1000,
-    topAlbum: snoopAlbums[0],
+    topAlbum: null,
     albumMenuOpen: false,
+    startDate: null,
   }
 
   setRapName = (event)=> {
@@ -50,6 +54,8 @@ class App extends React.Component {
     })
 
   selectAlbum = (album)=> this.setState({ topAlbum: album, albumMenuOpen: false })
+
+  setStartDate = (date)=> this.setState({ startDate: date })
 
   done = (event)=> {
     this.toggleModal();
@@ -131,6 +137,14 @@ class App extends React.Component {
                 </ul>
               ) : null
             }
+          </div>
+
+          <div className='card swanky-input-container'>
+            <label>
+              <DatePicker selected={this.state.startDate}
+                          onChange={this.setStartDate} />
+              <span className='title'>Start Date</span>
+            </label>
           </div>
 
 

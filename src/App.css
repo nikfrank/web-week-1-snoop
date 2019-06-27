@@ -160,6 +160,18 @@ ul.album-menu li span:nth-child(2), .album-dropdown-base span:nth-child(2) {
   padding: 0 3px 0 9px;
 }
 
+.swanky-input-container .react-datepicker__input-container {
+  position: static;
+}
+
+.swanky-input-container .react-datepicker-popper {
+  z-index: 40;
+}
+
+.swanky-input-container .react-datepicker {
+  transform: scale(1.25, 1.25);
+}
+
 .done-container {
   flex-basis: 100%;
   display: flex;
