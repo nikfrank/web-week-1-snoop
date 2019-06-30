@@ -60,22 +60,38 @@ class App extends React.Component {
   done = (event)=> {
     this.toggleModal();
     console.log('done applying, it\'s friday, now I got nothin to do');
+
+    fetch('/submit', {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        rapName: this.state.rapName,
+        email: this.state.email,
+        albumSales: this.state.albumSales,
+        topAlbum: this.state.topAlbum,
+        startDate: this.state.startDate.getTime(),
+      }),
+    }).then(response => response.text())
+      .then(responseText => console.log(responseText));
   }
 
   render(){
+    const { rapName, email } = this.state;
+
     return (
       <div className="App">
         <div className='form'>
           <div className='card swanky-input-container'>
             <label>
-              <input value={this.state.rapName} onChange={this.setRapName} />
+              <input value={rapName} onChange={this.setRapName} />
               <span className='title'>Rap Name</span>
             </label>
           </div>
 
           <div className='card swanky-input-container'>
             <label>
-              <input value={this.state.email} onChange={this.setEmail} />
+              <input value={email} onChange={this.setEmail} />
               <span className='title'>Email</span>
               {
                 (this.state.isEmailValid || this.state.email.length < 1) ? (null) : (

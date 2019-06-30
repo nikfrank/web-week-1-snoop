@@ -160,6 +160,7 @@ ul.album-menu li span:nth-child(2), .album-dropdown-base span:nth-child(2) {
   padding: 0 3px 0 9px;
 }
 
+
 .swanky-input-container .react-datepicker__input-container {
   position: static;
 }
@@ -169,7 +170,17 @@ ul.album-menu li span:nth-child(2), .album-dropdown-base span:nth-child(2) {
 }
 
 .swanky-input-container .react-datepicker {
-  transform: scale(1.25, 1.25);
+  transform-origin: 0 100%;
+  animation: drunk 10s infinite forwards;
+}
+
+@keyframes drunk {
+  from {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+  to {
+    transform: rotate3d(1, 1, 1, 360deg);
+  }
 }
 
 .done-container {
