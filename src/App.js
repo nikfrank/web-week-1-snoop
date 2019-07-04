@@ -4,6 +4,7 @@ import emailRegex from './emailRegex';
 import goldRecord from './goldRecord.png';
 
 import snoopAlbums from './snoopAlbums';
+import rappers from './rappers';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -22,6 +23,7 @@ class App extends React.Component {
     topAlbum: null,
     albumMenuOpen: false,
     startDate: null,
+    topRapper: rappers[0],
   }
 
   setRapName = (event)=> {
@@ -57,6 +59,8 @@ class App extends React.Component {
 
   setStartDate = (date)=> this.setState({ startDate: date })
 
+  setRapper = (rapper)=> this.setState({ topRapper: rapper })
+
   done = (event)=> {
     this.toggleModal();
     console.log('done applying, it\'s friday, now I got nothin to do');
@@ -81,6 +85,20 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <div className='header'>
+          <img src={this.state.topRapper.imgSrc}
+               alt={this.state.topRapper.name}/>
+          <ul className='hover-dropdown'>
+            <li>{this.state.topRapper.name}</li>
+            {
+              rappers.map((rapper)=> (
+                <li onClick={()=> this.setRapper(rapper)} key={rapper.name}>
+                    {rapper.name}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
         <div className='form'>
           <div className='card swanky-input-container'>
             <label>
